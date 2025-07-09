@@ -1,0 +1,232 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. Tous droits réservés.
+
+Installez la dernière version de PowerShell pour de nouvelles fonctionnalités et améliorations ! https://aka.ms/PSWindows
+
+PS C:\Users\gpres> ssh -i cle_vm_tp234 -p 2222 inf8480@localhost
+Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.4.0-47-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Fri Feb 16 13:59:21 UTC 2024
+
+  System load:  0.0                Processes:                132
+  Usage of /:   36.1% of 23.99GB   Users logged in:          0
+  Memory usage: 8%                 IPv4 address for docker0: 172.17.0.1
+  Swap usage:   0%                 IPv4 address for enp0s3:  10.0.2.15
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+7 updates can be installed immediately.
+0 of these updates are security updates.
+To see these additional updates run: apt list --upgradable
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+New release '22.04.3 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Fri Feb 16 02:00:06 2024 from 10.0.2.2
+inf8480@inf8480:~$ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+inf8480@inf8480:~$ sudo docker imqges
+docker: 'imqges' is not a docker command.
+See 'docker --help'
+inf8480@inf8480:~$ sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ubuntu              focal               18ca3f4297e7        3 weeks ago         72.8MB
+inf8480tp2          v1                  38ccfc93770e        3 years ago         1.63GB
+grpc/cxx            latest              6c7b9e0bab1b        5 years ago         1.38GB
+inf8480@inf8480:~$ sudo docker rm ubuntu
+Error: No such container: ubuntu
+inf8480@inf8480:~$ sudo docker run -t -d --privileged=true --name gluster1 --hostname
+160 ubuntu:focalflag needs an argument: --hostname
+See 'docker run --help'.
+inf8480@inf8480:~$ sudo docker run -t -d --privileged=true --name gluster1 --hostname gluster1 -p 24007 -p 49152-49160 ubuntu:focal
+docker: Error response from daemon: Conflict. The container name "/gluster1" is already in use by container "8b987d18714dfc50d00a2a59ce11c92a473ee110971f90b5c13cbc52650bb763". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+inf8480@inf8480:~$ sudo docker stop gluster1
+gluster1
+inf8480@inf8480:~$ sudo docker run -t -d --privileged=true --name gluster1 --hostname gluster1 -p 24007 -p 49152-49160 ubuntu:focal
+docker: Error response from daemon: Conflict. The container name "/gluster1" is already in use by container "8b987d18714dfc50d00a2a59ce11c92a473ee110971f90b5c13cbc52650bb763". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+inf8480@inf8480:~$ sudo docker rm gluster1 gluster2 client
+gluster1
+client
+Error: No such container: gluster2
+inf8480@inf8480:~$ sudo docker run -t -d --privileged=true --name gluster1 --hostname gluster1 -p 24007 -p 49152-49160 ubuntu:focal
+b1db3966bec7fbf631cd5cead0bc4dfcd1dde081d526a0456b55fb8dff7aa3cb
+inf8480@inf8480:~$ sudo docker run -t -d --privileged=true --name gluster2 --hostname gluster2 -p 24007 -p 49152-49160 ubuntu:focal
+01bf24d72dd8f7e26c92738ced8dda219aa6f7b1ba199c664b20079ec7f69def
+inf8480@inf8480:~$ sudo docker run -t -d --privileged=true --name client --hostname client -p 24007 -p 49152-49160 ubuntu:focal
+cf2136bce7687068d1a805051248cb5e064f902ce1df55b0487efb5ebe71abce
+inf8480@inf8480:~$ sudo docker exec -it gluster1 /bin/bash
+root@gluster1:/# exit
+exit
+inf8480@inf8480:~$ docker ps
+Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.40/containers/json: dial unix /var/run/docker.sock: connect: permission denied
+inf8480@inf8480:~$ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                                                                                               NAMES
+cf2136bce768        ubuntu:focal        "/bin/bash"         2 hours ago         Up 2 hours          0.0.0.0:32797->24007/tcp, 0.0.0.0:32796->49152/tcp, 0.0.0.0:32795->49153/tcp, 0.0.0.0:32794->49154/tcp, 0.0.0.0:32793->49155/tcp, 0.0.0.0:32792->49156/tcp, 0.0.0.0:32791->49157/tcp, 0.0.0.0:32790->49158/tcp, 0.0.0.0:32789->49159/tcp, 0.0.0.0:32788->49160/tcp   client
+01bf24d72dd8        ubuntu:focal        "/bin/bash"         2 hours ago         Up 2 hours          0.0.0.0:32787->24007/tcp, 0.0.0.0:32786->49152/tcp, 0.0.0.0:32785->49153/tcp, 0.0.0.0:32784->49154/tcp, 0.0.0.0:32783->49155/tcp, 0.0.0.0:32782->49156/tcp, 0.0.0.0:32781->49157/tcp, 0.0.0.0:32780->49158/tcp, 0.0.0.0:32779->49159/tcp, 0.0.0.0:32778->49160/tcp   gluster2
+b1db3966bec7        ubuntu:focal        "/bin/bash"         2 hours ago         Up 2 hours          0.0.0.0:32777->24007/tcp, 0.0.0.0:32776->49152/tcp, 0.0.0.0:32775->49153/tcp, 0.0.0.0:32774->49154/tcp, 0.0.0.0:32773->49155/tcp, 0.0.0.0:32772->49156/tcp, 0.0.0.0:32771->49157/tcp, 0.0.0.0:32770->49158/tcp, 0.0.0.0:32769->49159/tcp, 0.0.0.0:32768->49160/tcp   gluster1
+inf8480@inf8480:~$ sudo nano /etc/docker/daemon.json
+inf8480@inf8480:~$ {"dns": ["8.8.8.8", "8.8.4.4"]}
+{dns:: command not found
+inf8480@inf8480:~$ sudo nano /etc/docker/daemon.json
+inf8480@inf8480:~$ Restart-Service docker
+Restart-Service: command not found
+inf8480@inf8480:~$ sudo systemctl restart docker
+inf8480@inf8480:~$ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+inf8480@inf8480:~$ sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ubuntu              focal               18ca3f4297e7        3 weeks ago         72.8MB
+inf8480tp2          v1                  38ccfc93770e        3 years ago         1.63GB
+grpc/cxx            latest              6c7b9e0bab1b        5 years ago         1.38GB
+inf8480@inf8480:~$ sudo docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS
+
+                                                                                                       NAMES
+cf2136bce768        ubuntu:focal        "/bin/bash"         10 hours ago        Up 55 seconds               0.0.0.0:32797->24007/tcp, 0.0.0.0:32796->49152/tcp, 0.0.0.0:32795->49153/tcp, 0.0.0.0:32794->49154/tcp, 0.0.0.0:32793->49155/tcp, 0.0.0.0:32792->49156/tcp, 0.0.0.0:32791->49157/tcp, 0.0.0.0:32790->49158/tcp, 0.0.0.0:32789->49159/tcp, 0.0.0.0:32788->49160/tcp   client
+01bf24d72dd8        ubuntu:focal        "/bin/bash"         10 hours ago        Up 2 minutes                0.0.0.0:32787->24007/tcp, 0.0.0.0:32786->49152/tcp, 0.0.0.0:32785->49153/tcp, 0.0.0.0:32784->49154/tcp, 0.0.0.0:32783->49155/tcp, 0.0.0.0:32782->49156/tcp, 0.0.0.0:32781->49157/tcp, 0.0.0.0:32780->49158/tcp, 0.0.0.0:32779->49159/tcp, 0.0.0.0:32778->49160/tcp   gluster2
+b1db3966bec7        ubuntu:focal        "/bin/bash"         10 hours ago        Up 4 minutes                0.0.0.0:32777->24007/tcp, 0.0.0.0:32776->49152/tcp, 0.0.0.0:32775->49153/tcp, 0.0.0.0:32774->49154/tcp, 0.0.0.0:32773->49155/tcp, 0.0.0.0:32772->49156/tcp, 0.0.0.0:32771->49157/tcp, 0.0.0.0:32770->49158/tcp, 0.0.0.0:32769->49159/tcp, 0.0.0.0:32768->49160/tcp   gluster1
+2a0cededd1da        inf8480tp2:v1       "bash"              8 days ago          Exited (255) 24 hours ago
+
+                                                                                                       inf8480tp2
+inf8480@inf8480:~$ sudo docker rm gluster1
+Error response from daemon: You cannot remove a running container b1db3966bec7fbf631cd5cead0bc4dfcd1dde081d526a0456b55fb8dff7aa3cb. Stop the container before attempting removal or force remove
+inf8480@inf8480:~$ sudo docker rm client
+Error response from daemon: You cannot remove a running container cf2136bce7687068d1a805051248cb5e064f902ce1df55b0487efb5ebe71abce. Stop the container before attempting removal or force remove
+inf8480@inf8480:~$ sudo docker stop client
+client
+inf8480@inf8480:~$ sudo docker rm client
+client
+inf8480@inf8480:~$
+Message from syslogd@inf8480 at Feb 19 08:06:53 ...
+ kernel:[220304.133844] watchdog: BUG: soft lockup - CPU#0 stuck for 4473s! [docker:194177]
+
+Message from syslogd@inf8480 at Feb 19 09:20:11 ...
+ kernel:[220304.329176] watchdog: BUG: soft lockup - CPU#1 stuck for 4473s! [systemd:1]
+
+inf8480@inf8480:~$ ls
+TP2_trace_partie1_modif.zip  cle_vm_tp234  correction_tp2.sh.x  glusterfs_docker  trace_files
+inf8480@inf8480:~$ Connection to localhost closed by remote host.
+Connection to localhost closed.
+PS C:\Users\gpres> ssh -i cle_vm_tp234 -p 2222 inf8480@localhost
+Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.4.0-47-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Wed Feb 21 03:10:34 UTC 2024
+
+  System load:  0.2                Processes:                139
+  Usage of /:   36.6% of 23.99GB   Users logged in:          0
+  Memory usage: 7%                 IPv4 address for docker0: 172.17.0.1
+  Swap usage:   0%                 IPv4 address for enp0s3:  10.0.2.15
+
+ * Kubernetes 1.19 is out! Get it in one command with:
+
+     sudo snap install microk8s --channel=1.19 --classic
+
+   https://microk8s.io/ has docs and details.
+
+7 updates can be installed immediately.
+0 of these updates are security updates.
+To see these additional updates run: apt list --upgradable
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+
+Last login: Sat Sep 19 12:30:10 2020 from 10.0.2.2
+inf8480@inf8480:~$ sudo docker run -t -d --privileged=true --name gluster1 --hostname gluster1 -p 24007 -p 49152-49160 ubuntu:focal
+Unable to find image 'ubuntu:focal' locally
+focal: Pulling from library/ubuntu
+8ee087424735: Pull complete
+Digest: sha256:bb1c41682308d7040f74d103022816d41c50d7b0c89e9d706a74b4e548636e54
+Status: Downloaded newer image for ubuntu:focal
+ecbc04aae6518cf82e32e50494377ab269d315906da0eb94541477684d953d54
+^[[A^[[A^[[B^[[Binf8480@inf8480:~$ sudo docker run -t -d --privileged=true --name gluster1 --hostname gluster1 -p 24007 -p 49152-49160 ubuntu:focal
+inf8480@inf8480:~$ sudo docker run -t -d --privileged=true --name gluster1 --hostname gluster1 -p 24007 -p 49152-49160 ubuntu:focal
+docker: Error response from daemon: Conflict. The container name "/gluster1" is already in use by container "ecbc04aae6518cf82e32e50494377ab269d315906da0eb94541477684d953d54". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+inf8480@inf8480:~$ sudo docker run -t -d --privileged=true --name gluster2 --hostname gluster2 -p 24007 -p 49152-49160 ubuntu:focal
+e0cc5e02049a144d9f11f01bbb403e18aaf80f5c6cec62dd7ccb2ecbf4787603
+inf8480@inf8480:~$ sudo docker run -t -d --privileged=true --name client --hostname client -p 24007 -p 49152-49160 ubuntu:focal
+b27ceb84befde410d3a2600bfb1818e6859ef3f8dd364cffb822e75056adbf6c
+inf8480@inf8480:~$ sudo docker exec gluster1 /bin/bash/
+OCI runtime exec failed: exec failed: container_linux.go:349: starting container process caused "exec: \"/bin/bash/\": stat /bin/bash/: not a directory": unknown: Are you trying to mount a directory onto a file (or vice-versa)? Check if the specified host path exists and is the expected type
+inf8480@inf8480:~$ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS              PORTS
+
+                                                                                                NAMES
+b27ceb84befd        ubuntu:focal        "/bin/bash"         About a minute ago   Up About a minute   0.0.0.0:32797->24007/tcp, 0.0.0.0:32796->49152/tcp, 0.0.0.0:32795->49153/tcp, 0.0.0.0:32794->49154/tcp, 0.0.0.0:32793->49155/tcp, 0.0.0.0:32792->49156/tcp, 0.0.0.0:32791->49157/tcp, 0.0.0.0:32790->49158/tcp, 0.0.0.0:32789->49159/tcp, 0.0.0.0:32788->49160/tcp   client
+e0cc5e02049a        ubuntu:focal        "/bin/bash"         2 minutes ago        Up 2 minutes        0.0.0.0:32787->24007/tcp, 0.0.0.0:32786->49152/tcp, 0.0.0.0:32785->49153/tcp, 0.0.0.0:32784->49154/tcp, 0.0.0.0:32783->49155/tcp, 0.0.0.0:32782->49156/tcp, 0.0.0.0:32781->49157/tcp, 0.0.0.0:32780->49158/tcp, 0.0.0.0:32779->49159/tcp, 0.0.0.0:32778->49160/tcp   gluster2
+ecbc04aae651        ubuntu:focal        "/bin/bash"         3 minutes ago        Up 3 minutes        0.0.0.0:32777->24007/tcp, 0.0.0.0:32776->49152/tcp, 0.0.0.0:32775->49153/tcp, 0.0.0.0:32774->49154/tcp, 0.0.0.0:32773->49155/tcp, 0.0.0.0:32772->49156/tcp, 0.0.0.0:32771->49157/tcp, 0.0.0.0:32770->49158/tcp, 0.0.0.0:32769->49159/tcp, 0.0.0.0:32768->49160/tcp   gluster1
+inf8480@inf8480:~$ sudo docker exec -it gluster1 /bin/bash
+root@gluster1:/#
+Message from syslogd@inf8480 at Feb 21 06:13:09 ...
+ kernel:[11248.583359] watchdog: BUG: soft lockup - CPU#1 stuck for 31s! [unattended-upgr:121742]
+
+root@gluster1:/# exit
+exit
+inf8480@inf8480:~$ exit
+logout
+Connection to localhost closed.
+PS C:\Users\gpres> scp -i cle_vm_tp234 -P 2222 "D:\Polytechnique\Cours\Hiver 2024\INF8480 Système répartis et infonuagique\TP 3\correct.sh.x" inf8480@localhost:~
+correct.sh.x                                                                                       100%   16KB   3.2MB/s   00:00
+PS C:\Users\gpres> ssh -i cle_vm_tp234 -p 2222 inf8480@localhost
+Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.4.0-47-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Wed Feb 21 06:29:27 UTC 2024
+
+  System load:  0.2                Processes:                232
+  Usage of /:   48.4% of 23.99GB   Users logged in:          1
+  Memory usage: 19%                IPv4 address for docker0: 172.17.0.1
+  Swap usage:   0%                 IPv4 address for enp0s3:  10.0.2.15
+
+  => There are 5 zombie processes.
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+329 updates can be installed immediately.
+199 of these updates are security updates.
+To see these additional updates run: apt list --upgradable
+
+New release '22.04.3 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+*** System restart required ***
+Last login: Wed Feb 21 05:15:47 2024 from 10.0.2.2
+inf8480@inf8480:~$ ls
+Dockerfile  cle_vm_tp234  correct.sh.x
+inf8480@inf8480:~$ ./correct.sh.x MjMwNTY4NmE1MTdkMjc3MWU4cnJyMzg=
+-bash: ./correct.sh.x: Permission denied
+inf8480@inf8480:~$ chmod +x correct.sh.x
+inf8480@inf8480:~$ ./correct.sh.x MjMwNTY4NmE1MTdkMjc3MWU4cnJyMzg=
+############################################
+# Correction INF8480 TP3 Hiver 2022 V8.0 #
+############################################
+Résutat :
+hash ok
+Tp vérifé ! Votre hash unique est : YidNak13TlRZNE5tRTFNVGRrTWpjM01XVTRjbkp5TXpnPSdha2pmVUlkdWl1ZmQ=
+inf8480@inf8480:~$ ^C
+inf8480@inf8480:~$
